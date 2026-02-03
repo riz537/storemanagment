@@ -1,9 +1,17 @@
 using {mystore.db as db} from '../db/schema';
 
 service MyStoreService {
-
             @odata.draft.enabled
-    entity Products as
+    entity Products @(restrict: [
+        {
+            grant: ['*'],
+            to   : 'Owner'
+        },
+        {
+            grant: ['READ'],
+            to   : 'Employee'
+        }
+    ]) as
         projection on db.Products {
             *,
             case
@@ -26,8 +34,19 @@ service MyStoreService {
 
         actions {
             @Common.SideEffects: {TargetProperties: ['discount']}
-            action ApplyDiscount(discount: Integer @Common.Label:'Apply Discount' @assert.range: [1, 100]) returns String;
+            @requires          : 'Owner'
+            action ApplyDiscount(discount: Integer  @Common.Label: 'Apply Discount'  @assert.range: [
+                1,
+                100
+            ]  ) returns String;
         };
+
+    @odata.singleton  @cds.persistence.skip
+    @Common.SideEffects: {TargetProperties: ['isOwner']}
+    entity Configuration {
+        key ID      : String;
+            isOwner : Boolean;
+    }
 
 
 }

@@ -1,0 +1,30 @@
+{
+  "xsappname": "store-managment-app",
+  "tenant-mode": "shared",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.Owner",
+      "description": "Owner role "
+    },
+    {
+      "name": "$XSAPPNAME.Employee",
+      "description": "Employee role "
+    }
+  ],
+  "role-templates": [
+    {
+      "name": "Owner",
+      "description": "Full access to all Products operations",
+      "scope-references": [
+        "$XSAPPNAME.Owner"
+      ]
+    },
+    {
+      "name": "Employee",
+      "description": "Read-only access to Products",
+      "scope-references": [
+        "$XSAPPNAME.Employee"
+      ]
+    }
+  ]
+}

@@ -1,25 +1,32 @@
 const cds = require('@sap/cds')
 
-module.exports = class MyStoreService extends cds.ApplicationService { init() {
+module.exports = class MyStoreService extends cds.ApplicationService {
+  init() {
 
-  const { Products } = cds.entities('MyStoreService')
+    const { Products, Configuration } = cds.entities('MyStoreService')
 
-  this.before (['CREATE', 'UPDATE'], Products, async (req) => {
-    console.log('Before CREATE/UPDATE Products', req.data)
-  })
-  this.after ('READ', Products, async (products, req) => {
-    
-  })
-  this.on("ApplyDiscount",async req=>{
-    const id = req.params[0].ID;   // single selected row
-  const discount = req.data.discount;
-    await UPDATE(Products)
-      .set({ discount: discount })
-      .where({ ID: id });
+    this.before(['CREATE', 'UPDATE'], Products, async (req) => {
+      console.log('Before CREATE/UPDATE Products', req.data)
+    })
+    this.after('READ', Products, async (products, req) => {
 
-    req.info (`Discount ${discount}% applied successfully`);
-   });
+    })
+    this.on("ApplyDiscount", async req => {
+      const id = req.params[0].ID;   // single selected row
+      const discount = req.data.discount;
+      await UPDATE(Products)
+        .set({ discount: discount })
+        .where({ ID: id });
 
+      req.info(`Discount ${discount}% applied successfully`);
+    });
 
-  return super.init()
-}}
+    this.on('READ', 'Configuration', async req => {
+      req.reply({
+        isOwner: req.user.is('Owner') //admin is the role, which for example is also used in @requires annotation
+      });
+    });
+
+    return super.init()
+  }
+}

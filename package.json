@@ -4,7 +4,8 @@
   "description": "A simple CAP project.",
   "dependencies": {
     "@sap/cds": "^9",
-    "express": "^4"
+    "express": "^4",
+    "@sap/xssec": "^4"
   },
   "devDependencies": {
     "@cap-js/sqlite": "^2",
@@ -20,5 +21,26 @@
   ],
   "sapux": [
     "app/ownerui"
-  ]
+  ],
+  "cds": {
+    "requires": {
+      "auth": {
+        "kind": "mocked",
+        "users": {
+          "rizwan": {
+            "password": "owner123",
+            "roles": [
+              "Owner"
+            ]
+          },
+          "sameer": {
+            "password": "worker123",
+            "roles": [
+              "Employee"
+            ]
+          }
+        }
+      }
+    }
+  }
 }
