@@ -6,8 +6,8 @@ using {
 } from '@sap/cds/common';
 
 
-entity Stores : cuid {
-    name     : String(20);
+entity Stores  {
+    key name     : String(20);
     location : String(20);
 }
 
@@ -21,9 +21,11 @@ entity Products : cuid {
 }
 
 entity Orders : cuid, managed {
-    netPrice       : Decimal(9, 2);
+    netPrice       : Decimal(9, 2) ;
     customerName   : String(20);
     customerMobile : String @assert.format: '^\+?[1-9]\d{1,14}$';
+    store: Association to Stores;
+    items: Composition of many OrderItems on items.order=$self;
 }
 
 entity OrderItems : cuid {
@@ -31,7 +33,8 @@ entity OrderItems : cuid {
     product    : Association to Products;
     quantity   : Integer;
     unitPrice  : Decimal(9, 2);
-    totalPrice : Decimal(9, 2);
+    discount: Integer default 0 ;
+    totalPrice : Decimal(9,2);
 }
 
 

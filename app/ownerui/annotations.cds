@@ -8,8 +8,8 @@ annotate service.Products with @(
     UI.SelectionFields                        : [
         ID,
         name,
-        price,
-        store_ID,
+        price
+       
     ],
     UI.LineItem                               : [
         {
@@ -45,6 +45,12 @@ annotate service.Products with @(
             $Type     : 'UI.DataFieldForAction',
             Action    : 'MyStoreService.ApplyDiscount',
             Label     : 'ApplyDiscount',
+            @UI.Hidden: {$edmJson: {$Not: {$Path: '/Configuration/isOwner'}}}
+        },
+        {
+            $Type     : 'UI.DataFieldForAction',
+            Action    : 'MyStoreService.AddStock',
+            Label     : 'AddStock',
             @UI.Hidden: {$edmJson: {$Not: {$Path: '/Configuration/isOwner'}}}
         },
 

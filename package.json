@@ -13,14 +13,16 @@
   },
   "scripts": {
     "start": "cds-serve",
-    "watch-ownerui": "cds watch --open com.demo.ownerui/index.html?sap-ui-xx-viewCache=false --livereload false"
+    "watch-ownerui": "cds watch --open com.demo.ownerui/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-ordermgmnt": "cds watch --open com.demo.ordermgmnt/index.html?sap-ui-xx-viewCache=false --livereload false"
   },
   "private": true,
   "workspaces": [
     "app/*"
   ],
   "sapux": [
-    "app/ownerui"
+    "app/ownerui",
+    "app/ordermgmnt"
   ],
   "cds": {
     "requires": {
@@ -28,16 +30,31 @@
         "kind": "mocked",
         "users": {
           "rizwan": {
-            "password": "owner123",
+            "password": "rizwan",
             "roles": [
               "Owner"
-            ]
+            ],
+            "attr": {
+              "store": "RUMY"
+            }
           },
           "sameer": {
-            "password": "worker123",
+            "password": "sameer",
             "roles": [
               "Employee"
-            ]
+            ],
+            "attr": {
+              "store": "MIRA"
+            }
+          },
+          "panda": {
+            "password": "panda",
+            "roles": [
+              "Employee"
+            ],
+            "attr": {
+              "store": "RUMY"
+            }
           }
         }
       }

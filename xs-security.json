@@ -1,6 +1,6 @@
 {
   "xsappname": "store-managment-app",
-  "tenant-mode": "shared",
+  "tenant-mode": "dedicated",
   "scopes": [
     {
       "name": "$XSAPPNAME.Owner",
@@ -25,6 +25,13 @@
       "scope-references": [
         "$XSAPPNAME.Employee"
       ]
+    }
+  ],
+  "attributes": [
+    {
+      "name": "store",
+      "description": "Store Name",
+      "valueType" : "string"
     }
   ]
 }

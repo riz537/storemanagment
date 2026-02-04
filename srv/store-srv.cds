@@ -11,7 +11,7 @@ service MyStoreService {
             grant: ['READ'],
             to   : 'Employee'
         }
-    ]) as
+    ])                      as
         projection on db.Products {
             *,
             case
@@ -39,6 +39,15 @@ service MyStoreService {
                 1,
                 100
             ]  ) returns String;
+
+
+            @Common.SideEffects: {TargetProperties: ['stock']}
+            @requires          : 'Owner'
+            action AddStock(stock: Integer  @Common.Label: 'Add Stock'  @assert.range: [
+                1,
+                100
+            ]
+            )    returns String;
         };
 
     @odata.singleton  @cds.persistence.skip
@@ -48,5 +57,26 @@ service MyStoreService {
             isOwner : Boolean;
     }
 
+    @requires: [
+        'Owner',
+        'Employee'
+    ]
+    @odata.draft.enabled
+    entity Orders           as projection on db.Orders;
+
+    @requires: [
+        'Owner',
+        'Employee'
+    ]
+    entity OrderItems       as projection on db.OrderItems;
+
+    @requires: [
+        'Owner',
+        'Employee'
+    ]
+    entity Stores           as projection on db.Stores;
+
+
+   
 
 }
