@@ -31,7 +31,7 @@
     {
       "name": "store",
       "description": "Store Name",
-      "valueType" : "string"
+      "valueType": "string"
     }
   ]
 }

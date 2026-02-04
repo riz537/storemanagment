@@ -17,11 +17,23 @@
     },
     "dataSources": {
       "mainService": {
-        "uri": "/odata/v4/my-store/",
+        "uri": "odata/v4/my-store/",
         "type": "OData",
         "settings": {
           "annotations": [],
           "odataVersion": "4.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "ownerui-display": {
+          "semanticObject": "ownerui",
+          "action": "display",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
         }
       }
     }
@@ -151,5 +163,9 @@
     "app": {
       "enableLazyLoading": true
     }
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "storemgmt.service"
   }
 }
