@@ -1,0 +1,1 @@
+using MyStoreAnalyticsService as service from '../../srv/analytics';

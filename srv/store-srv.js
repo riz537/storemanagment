@@ -29,12 +29,15 @@ module.exports = class MyStoreService extends cds.ApplicationService {
     /* Worker sees only his own store orders */
     /* -------------------------------- */
     this.before('READ', Orders, req => {
-      if (req.user.is('Worker')) {
+      if (req.user.is('Employee')) {
         const store = req.user.attr.store;
         req.query.where({ store_name: store });
       }
     });
-    
+    this.before('CREATE',Orders,async req=>{
+        req.data.store_name = req.user.attr.store;
+    });
+    //calculate totalprice, netprice
       this.after('PATCH', OrderItems.drafts, async (data, req) => {
         const { ID } = data;
 
@@ -66,6 +69,7 @@ module.exports = class MyStoreService extends cds.ApplicationService {
             }
         }
     });
+     //calculate totalprice, netprice on delete of items
     this.before('DELETE', OrderItems.drafts, async (req) => {
             // 1. Get the parent Order ID before the item is deleted
             // req.subject points to the specific record being deleted
@@ -91,34 +95,7 @@ module.exports = class MyStoreService extends cds.ApplicationService {
             }
         });
 
-   // this.before('PATCH', Orders.drafts, async (req) => {
-     // const store = req.user.attr.store;
-      //const items = req.data.items || [];
-      //let netPrice = 0;
-      // for (const item of items) {
-      //   // 1. Read product price
-      //   const product = await SELECT.one
-      //     .from(Products)
-      //     .where({ ID: item.product_ID });
-
-      //   if (!product) {
-      //     req.error(400, `Invalid product ${item.product_ID}`);
-      //   }
-
-      //   // 2. Calculate item unit price & total
-      //   item.unitPrice = product.price;
-      //   item.totalPrice = (product.price - (product.price * product.discount / 100)) * item.quantity ;
-        
-
-      //   // 3. Add to order net price
-      //   netPrice += item.totalPrice;
-      // }
-
-      // // 4. Set header net price
-      // req.data.netPrice = netPrice;
-      // req.data.store_name = store;
-
-    //});
+   
 
 
 

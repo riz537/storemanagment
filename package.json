@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "A simple CAP project.",
   "dependencies": {
+    "@cap-js/hana": "^2.6.0",
     "@sap/cds": "^9",
-    "express": "^4",
-    "@sap/xssec": "^4"
+    "@sap/xssec": "^4",
+    "express": "^4"
   },
   "devDependencies": {
     "@cap-js/sqlite": "^2",
@@ -14,7 +15,8 @@
   "scripts": {
     "start": "cds-serve",
     "watch-ownerui": "cds watch --open com.demo.ownerui/index.html?sap-ui-xx-viewCache=false --livereload false",
-    "watch-ordermgmnt": "cds watch --open com.demo.ordermgmnt/index.html?sap-ui-xx-viewCache=false --livereload false"
+    "watch-ordermgmnt": "cds watch --open com.demo.ordermgmnt/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-mystoreanalytics": "cds watch --open com.demo.mystoreanalytics/index.html?sap-ui-xx-viewCache=false --livereload false"
   },
   "private": true,
   "workspaces": [
@@ -53,7 +55,7 @@
               "Employee"
             ],
             "attr": {
-              "store": "RUMY"
+              "store": "ZOEY"
             }
           }
         }
