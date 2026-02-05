@@ -30,41 +30,46 @@
   "cds": {
     "requires": {
       "auth": {
-        "kind": "mocked",
-        "users": {
-          "rizwan": {
-            "password": "rizwan",
-            "roles": [
-              "Owner"
-            ],
-            "attr": {
-              "store": "RUMY"
-            }
-          },
-          "sameer": {
-            "password": "sameer",
-            "roles": [
-              "Employee"
-            ],
-            "attr": {
-              "store": "MIRA"
-            }
-          },
-          "panda": {
-            "password": "panda",
-            "roles": [
-              "Employee"
-            ],
-            "attr": {
-              "store": "ZOEY"
+        "[development]": {
+          "kind": "mocked",
+          "users": {
+            "rizwan": {
+              "password": "rizwan",
+              "roles": [
+                "Owner"
+              ],
+              "attr": {
+                "store": "MIRA"
+              }
+            },
+            "sameer": {
+              "password": "sameer",
+              "roles": [
+                "Employee"
+              ],
+              "attr": {
+                "store": "MIRA"
+              }
+            },
+            "panda": {
+              "password": "panda",
+              "roles": [
+                "Employee"
+              ],
+              "attr": {
+                "store": "ZOEY"
+              }
             }
           }
+        },
+        "[production]": {
+          "kind": "xsuaa"
         }
       },
       "[production]": {
         "db": "hana",
         "auth": {
-          "kind": "xsuaa"
+          "kind": "mocked"
         }
       },
       "destinations": true,

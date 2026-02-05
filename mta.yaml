@@ -25,7 +25,6 @@ modules:
         properties:
           srv-url: ${default-url}
     requires:
-      - name: storemgmt-auth
       - name: storemgmt-db
       - name: storemgmt-destination
 
@@ -41,7 +40,6 @@ modules:
     type: com.sap.application.content
     path: gen
     requires:
-      - name: storemgmt-auth
       - name: srv-api
       - name: storemgmt-html5-repo-host
         parameters:
@@ -101,10 +99,6 @@ modules:
   - name: storemgmt-destinations
     type: com.sap.application.content
     requires:
-      - name: storemgmt-auth
-        parameters:
-          service-key:
-            name: storemgmt-auth-key
       - name: storemgmt-html5-repo-host
         parameters:
           service-key:
@@ -124,35 +118,8 @@ modules:
               ServiceInstanceName: storemgmt-html5-repo-host
               ServiceKeyName: storemgmt-html5-repo-host-key
               sap.cloud.service: storemgmt.service
-            - Name: storemgmt-auth
-              Authentication: OAuth2UserTokenExchange
-              ServiceInstanceName: storemgmt-auth
-              ServiceKeyName: storemgmt-auth-key
-              sap.cloud.service: storemgmt.service
 
 resources:
-  - name: storemgmt-auth
-    type: org.cloudfoundry.managed-service
-    parameters:
-      service: xsuaa
-      service-plan: application
-      path: ./xs-security.json
-      config:
-        xsappname: storemgmt-${org}-${space}
-        tenant-mode: dedicated
-        oauth2-configuration:
-          credential-types:
-            - "binding-secret"
-            - "x509"
-        role-collections:
-          - name: 'Owner (storemgmt ${org}-${space})'
-            description: 'generated'
-            role-template-references:
-              - '$XSAPPNAME.Owner'
-          - name: 'Employee (storemgmt ${org}-${space})'
-            description: 'generated'
-            role-template-references:
-              - '$XSAPPNAME.Employee'
   - name: storemgmt-db
     type: com.sap.xs.hdi-container
     parameters:

@@ -49,6 +49,11 @@ module.exports = class MyStoreService extends cds.ApplicationService {
         console.log("printing the user store"+req.user.attr.store);
         req.data.store_name = req.user.attr.store;
     });
+    this.before('CREATE',Orders.drafts,async req=>{
+       console.log("inside before create on order in draft");
+        console.log("printing the user store"+req.user.attr.store);
+        req.data.store_name = req.user.attr.store;
+    });
     //calculate totalprice, netprice
       this.after('PATCH', OrderItems.drafts, async (data, req) => {
         const { ID } = data;
