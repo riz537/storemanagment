@@ -17,6 +17,9 @@
       "description": "Full access to all Products operations",
       "scope-references": [
         "$XSAPPNAME.Owner"
+      ],
+      "attribute-references": [
+        "store"
       ]
     },
     {
@@ -24,6 +27,9 @@
       "description": "Read-only access to Products",
       "scope-references": [
         "$XSAPPNAME.Employee"
+      ],
+      "attribute-references": [
+        "store"
       ]
     }
   ],

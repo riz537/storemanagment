@@ -5,6 +5,12 @@ module.exports = class MyStoreService extends cds.ApplicationService {
 
     const { Products, Configuration, Orders, OrderItems } = cds.entities('MyStoreService')
 
+   this.on('whoami', req => {
+    console.log("who am i");
+    console.log(req.user);
+    
+   });
+
     //apply discount
     this.on("ApplyDiscount", async req => {
       const id = req.params[0].ID;   // single selected row
@@ -29,12 +35,18 @@ module.exports = class MyStoreService extends cds.ApplicationService {
     /* Worker sees only his own store orders */
     /* -------------------------------- */
     this.before('READ', Orders, req => {
+       console.log("inside before read on order");
+        console.log("printing the user store"+req.user.attr.store);
+        console.log(req.user.is('Employee')+"<---- is emloyee");
       if (req.user.is('Employee')) {
         const store = req.user.attr.store;
+       
         req.query.where({ store_name: store });
       }
     });
     this.before('CREATE',Orders,async req=>{
+       console.log("inside before create on order");
+        console.log("printing the user store"+req.user.attr.store);
         req.data.store_name = req.user.attr.store;
     });
     //calculate totalprice, netprice
