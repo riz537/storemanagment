@@ -2,9 +2,9 @@ using MyStoreService as service from '../../srv/store-srv';
 
 
 annotate service.Products with @(
-    UI.CreateHidden                           : {$edmJson: {$Not: {$Path: '/Configuration/isOwner'}}},
-    UI.UpdateHidden                           : {$edmJson: {$Not: {$Path: '/Configuration/isOwner'}}},
-    UI.DeleteHidden                           : {$edmJson: {$Not: {$Path: '/Configuration/isOwner'}}},
+    UI.CreateHidden                           : {$edmJson: {$Not: {$Path: '/MyStoreService.EntityContainer/Configuration/isOwner'}}},
+    UI.UpdateHidden                           : {$edmJson: {$Not: {$Path: '/MyStoreService.EntityContainer/Configuration/isOwner'}}},
+    UI.DeleteHidden                           : {$edmJson: {$Not: {$Path: '/MyStoreService.EntityContainer/Configuration/isOwner'}}},
     UI.SelectionFields                        : [
         ID,
         name,
