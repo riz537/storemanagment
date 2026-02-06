@@ -5,17 +5,17 @@ annotate service.Orders with @(
         {
             $Type: 'UI.DataField',
             Value: ID,
-            Label: 'ID',
+            Label: 'Order ID',
         },
         {
             $Type: 'UI.DataField',
             Value: netPrice,
-            Label: 'netPrice',
+            Label: 'Net Price',
         },
         {
             $Type: 'UI.DataField',
             Value: store_name,
-            Label: 'store_name',
+            Label: 'Store Name',
         },
         {
             $Type: 'UI.DataField',
@@ -59,21 +59,22 @@ annotate service.Orders with @(
             {
                 $Type: 'UI.DataField',
                 Value: ID,
+                Label : 'Order ID',
             },
             {
                 $Type: 'UI.DataField',
                 Value: netPrice,
-                Label: 'netPrice',
+                Label: 'Net Price',
             },
             {
                 $Type: 'UI.DataField',
                 Value: customerName,
-                Label: 'customerName',
+                Label: 'Customer Name',
             },
             {
                 $Type: 'UI.DataField',
                 Value: customerMobile,
-                Label: 'customerMobile',
+                Label: 'Customer Mobile',
             },
             {
                 $Type: 'UI.DataField',
@@ -104,32 +105,32 @@ annotate service.OrderItems with @(UI.LineItem #OrderItems: [
     {
         $Type: 'UI.DataField',
         Value: order_ID,
-        Label: 'order ID',
+        Label: 'Order ID',
     },
     {
         $Type: 'UI.DataField',
         Value: product_ID,
-        Label: 'product ID',
+        Label: 'Product ID',
     },
     {
         $Type: 'UI.DataField',
         Value: quantity,
-        Label: 'quantity',
+        Label: 'Quantity',
     },
     {
         $Type: 'UI.DataField',
         Value: unitPrice,
-        Label: 'unitPrice',
+        Label: 'Unit Price',
     },
     {
         $Type: 'UI.DataField',
         Value: totalPrice,
-        Label: 'totalPrice',
+        Label: 'Total Price',
     },
     {
         $Type: 'UI.DataField',
         Value: discount,
-        Label: 'discount',
+        Label: 'Discount',
     },
 ]);
 

@@ -39,7 +39,7 @@
                 "Owner"
               ],
               "attr": {
-                "store": "MIRA"
+                "store": "RUMY"
               }
             },
             "sameer": {
@@ -69,7 +69,7 @@
       "[production]": {
         "db": "hana",
         "auth": {
-          "kind": "mocked"
+          "kind": "xsuaa"
         }
       },
       "destinations": true,

@@ -41,7 +41,7 @@ service MyStoreService {
             ]  ) returns String;
 
 
-            @Common.SideEffects: {TargetProperties: ['stock']}
+            @Common.SideEffects: {TargetProperties: ['stock','status']}
             @requires          : 'Owner'
             action AddStock(stock: Integer  @Common.Label: 'Add Stock'  @assert.range: [
                 1,
@@ -51,7 +51,6 @@ service MyStoreService {
         };
 
     @odata.singleton  @cds.persistence.skip
-    @Common.SideEffects: {TargetProperties: ['isOwner']}
     entity Configuration {
         key ID      : String;
             isOwner : Boolean;

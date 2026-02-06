@@ -1,43 +1,53 @@
 {
-  "xsappname": "store-managment-app",
-  "tenant-mode": "dedicated",
-  "scopes": [
+ "xsappname": "store-managment-app",
+ "tenant-mode": "dedicated",
+ "scopes": [
+  {
+   "name": "$XSAPPNAME.Owner",
+   "description": "Owner role "
+  },
+  {
+   "name": "$XSAPPNAME.Employee",
+   "description": "Employee role "
+  }
+ ],
+ "role-templates": [
+  {
+   "name": "Owner",
+   "description": "Full access to all Products operations",
+   "scope-references": [
+    "$XSAPPNAME.Owner"
+   ],
+   "attribute-references": [
     {
-      "name": "$XSAPPNAME.Owner",
-      "description": "Owner role "
-    },
-    {
-      "name": "$XSAPPNAME.Employee",
-      "description": "Employee role "
+     "name": "store",
+     "default-values": [
+      "RUMY"
+     ]
     }
-  ],
-  "role-templates": [
+   ]
+  },
+  {
+   "name": "Employee",
+   "description": "Read-only access to Products",
+   "scope-references": [
+    "$XSAPPNAME.Employee"
+   ],
+   "attribute-references": [
     {
-      "name": "Owner",
-      "description": "Full access to all Products operations",
-      "scope-references": [
-        "$XSAPPNAME.Owner"
-      ],
-      "attribute-references": [
-        "store"
-      ]
-    },
-    {
-      "name": "Employee",
-      "description": "Read-only access to Products",
-      "scope-references": [
-        "$XSAPPNAME.Employee"
-      ],
-      "attribute-references": [
-        "store"
-      ]
+     "name": "store",
+     "default-values": [
+      "MIRA"
+     ]
     }
-  ],
-  "attributes": [
-    {
-      "name": "store",
-      "description": "Store Name",
-      "valueType": "string"
-    }
-  ]
+   ]
+  }
+ ],
+ "attributes": [
+  {
+   "name": "store",
+   "description": "Store Name",
+   "valueType": "string"
+  }
+ ]
 }
