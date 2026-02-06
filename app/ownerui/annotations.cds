@@ -28,7 +28,7 @@ annotate service.Products with @(
         {
             $Type: 'UI.DataField',
             Value: discount,
-            Label: 'discount',
+            Label: 'Discount',
         },
         {
             $Type: 'UI.DataField',

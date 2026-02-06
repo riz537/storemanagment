@@ -9,7 +9,7 @@ service MyStoreService {
         },
         {
             grant: ['READ'],
-            to   : 'Employee'
+            to   : 'Employee' 
         }
     ])                      as
         projection on db.Products {
@@ -41,7 +41,7 @@ service MyStoreService {
             ]  ) returns String;
 
 
-            @Common.SideEffects: {TargetProperties: ['stock','status']}
+            @Common.SideEffects: {TargetProperties: ['stock','status','statusCriticality']}
             @requires          : 'Owner'
             action AddStock(stock: Integer  @Common.Label: 'Add Stock'  @assert.range: [
                 1,
@@ -56,10 +56,20 @@ service MyStoreService {
             isOwner : Boolean;
     }
 
-    @requires: [
-        'Owner',
-        'Employee'
-    ]
+    @(restrict: [
+        {
+            grant: ['*'],
+            to   : 'Owner'
+        },
+        {
+            grant: ['WRITE'],
+            to   : 'Employee' 
+        },
+         {
+            grant: ['READ'],
+            to   : 'Employee', where: (store.name = $user.store)
+        }
+    ])       
     @odata.draft.enabled
     entity Orders           as projection on db.Orders;
 

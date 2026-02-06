@@ -30,25 +30,22 @@ module.exports = class MyStoreService extends cds.ApplicationService {
     /* -------------------------------- */
     /* Worker sees only his own store orders */
     /* -------------------------------- */
-    this.before('READ', Orders, req => {
-      console.log("inside before read on order");
-      console.log("printing the user store" + req.user.attr.store[0]);
-      console.log(req.user.is('Employee') + "<---- is emloyee");
-      if (req.user.is('Employee')) {
-        const store = req.user.attr.store[0];
+    // this.before('READ', Orders, req => {
+    //   console.log("inside before read on order");
+    //   console.log("printing the user store" + req.user.attr.store[0]);
+    //   console.log(req.user.is('Employee') + "<---- is emloyee");
+    //   if (req.user.is('Employee')) {
+    //     const store = req.user.attr.store[0];
 
-        req.query.where({ store_name: store });
-      }
-    });
-    this.before('CREATE', Orders, async req => {
-      console.log("inside before create on order");
-      console.log("printing the user store" + req.user.attr.store[0]);
-      req.data.store_name = req.user.attr.store[0];
-    });
+    //     req.query.where({ store_name: store });
+    //   }
+    // });
+    
     this.before('CREATE', Orders.drafts, async req => {
+      const stores = Array.isArray(req.user.attr.store)? req.user.attr.store: [req.user.attr.store];
       console.log("inside before create on order in draft");
-      console.log("printing the user store" + req.user.attr.store[0]);
-      req.data.store_name = req.user.attr.store[0];
+      console.log("printing the user stores" + stores);
+      req.data.store_name = stores[0];
     });
     //calculate totalprice, netprice
     this.after('PATCH', OrderItems.drafts, async (data, req) => {

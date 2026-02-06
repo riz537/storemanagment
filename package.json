@@ -39,7 +39,11 @@
                 "Owner"
               ],
               "attr": {
-                "store": "RUMY"
+                "store": [
+                  "RUMY",
+                  "MIRA",
+                  "ZOEY"
+                ]
               }
             },
             "sameer": {

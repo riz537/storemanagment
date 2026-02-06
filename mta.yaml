@@ -153,6 +153,10 @@ resources:
             description: 'generated'
             role-template-references:
               - '$XSAPPNAME.Employee'
+          - name: 'userattributes (storemgmt ${org}-${space})'
+            description: 'generated'
+            role-template-references:
+              - '$XSAPPNAME.userattributes'
   - name: storemgmt-db
     type: com.sap.xs.hdi-container
     parameters:
